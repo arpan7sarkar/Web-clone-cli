@@ -1,177 +1,209 @@
-# Web Clone CLI
+# 🌐 Web Clone CLI ⚡
 
-An interactive Node.js CLI to clone static websites. It discovers internal links, downloads HTML/CSS/JS/images, rewrites asset references to local files, and saves everything to a folder like `<domain>-clone`.
+> 🚀 **Lightning-fast website cloning tool** that discovers, downloads, and recreates static websites with just one command!
 
-The CLI supports English and Hindi, and guides you step-by-step with a friendly, colorful TUI.
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-green?style=flat-square&logo=node.js)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue?style=flat-square)
+![License](https://img.shields.io/badge/License-ISC-yellow?style=flat-square)
 
----
-
-## Features
-
-- Multi-page discovery using internal links on the root page
-- Rewrites `<link>`, `<script>` and `<img>` to local assets
-- Saves assets into `css/`, `js/`, and `images/` subfolders
-- Interactive prompts with language selection (English/Hindi)
-- Works on Windows, macOS, and Linux (commands executed in Node)
+An intelligent Node.js CLI that clones static websites by discovering internal links, downloading all assets (HTML/CSS/JS/images), and creating a perfect local replica. Features multilingual support (🇬🇧 English / 🇮🇳 Hindi) with an intuitive, colorful interface!
 
 ---
 
-## Prerequisites
+## ✨ Key Features
 
-- Node.js 18+ (required by modern ESM packages like `chalk` and `@inquirer/*`)
-- Internet connectivity to fetch the target website
-
-Optional (for the reasoning agent that orchestrates the tools):
-- An OpenAI-compatible API endpoint (Gemini-compatible) and key
-
----
-
-## Installation
-
-You can use it via npx (no install) or install globally.
-
-### Use via npx
-
-```
-npx chai-code-cli
-```
-
-### Install globally
-
-```
-npm i -g chai-code-cli
-chai-code-cli
-```
-
-If your shell cannot find the command after a global install, ensure your global npm bin directory is on PATH.
+🔍 **Smart Discovery** - Automatically finds and maps internal links  
+📁 **Organized Structure** - Saves assets in clean `css/`, `js/`, `images/` folders  
+🔗 **Link Rewriting** - Converts all references to work locally  
+🌍 **Multilingual** - Interactive prompts in English and Hindi  
+🎨 **Beautiful TUI** - Colorful, user-friendly terminal interface  
+⚡ **Cross-Platform** - Works seamlessly on Windows, macOS, and Linux  
+🤖 **AI-Powered** - Uses LLM agent for intelligent workflow orchestration
 
 ---
 
-## Environment Variables
+## 🛠️ Prerequisites
 
-Some flows in the CLI use an LLM agent to plan steps and call tools. For that, set the following in a `.env` at the project root (or set them in your environment). Use `example.env` as a template.
+| Requirement | Version | Purpose |
+|-------------|---------|---------|
+| 📦 **Node.js** | 18+ | Required for modern ESM packages |
+| 🌐 **Internet** | Active | Fetching target websites |
+| 🔑 **API Key** | Optional | For AI-powered reasoning agent |
+
+---
+
+## 🚀 Quick Installation
+
+### 🎯 Use via npx (Recommended)
+```bash
+npx web-clone-cli-by-arpan
+```
+
+### 🌍 Install globally
+```bash
+npm i web-clone-cli-by-arpan
 
 ```
+
+> 💡 **Tip**: If command not found after global install, ensure your npm global bin is in PATH!
+
+---
+
+## 🔧 Configuration
+
+Create a `.env` file for AI-powered features (use `example.env` as template):
+
+```env
 GEMINI_API_KEY=your_api_key_here
 BASE_URL=https://your-openai-compatible-endpoint/v1
 MODEL=gemini-2.5-flash
 ```
 
-- `GEMINI_API_KEY`: API key for your provider
-- `BASE_URL`: OpenAI-compatible base URL of your provider
-- `MODEL`: Model name; defaults to `gemini-2.5-flash` if omitted
-
-If you only plan to use the simple scraping capability driven by prompts, you should still define these keys because the CLI validates them on start.
-
----
-
-## Quick Start
-
-1) Create a `.env` file from `example.env` and fill values.
-
-2) Run the CLI:
-
-```
-npx chai-code-cli
-# or
-chai-code-cli
-```
-
-3) In the TUI:
-
-- Select your language
-- Enter your query, for example: “Clone https://example.com/”
-
-The CLI will plan steps and use its built-in `scraper` to:
-
-- Fetch the root page
-- Discover internal links on the same domain
-- Download each page and assets
-- Rewrite references to local `css/`, `js/`, and `images/`
-- Save to `<domain>-clone/` (e.g., `example-clone/`)
+| Variable | Description | Default |
+|----------|-------------|---------|
+| 🔑 `GEMINI_API_KEY` | Your API provider key | Required |
+| 🌐 `BASE_URL` | OpenAI-compatible endpoint | Required |
+| 🤖 `MODEL` | Model name | `gemini-2.5-flash` |
 
 ---
 
-## Usage Examples
+## 🎮 Getting Started
 
-- Clone a site (English):
-
-```
-Query: Clone https://example.com/
-```
-
-- Clone a site (Hindi):
-
-```
-Query: Website ko clone kare https://example.com/
+### 1️⃣ Setup Environment
+```bash
+cp example.env .env
+# Edit .env with your API credentials
 ```
 
-Output structure (example):
+### 2️⃣ Launch CLI
+```bash
+npm i web-clone-cli-by-arpan
+```
 
+### 3️⃣ Clone a Website
+- 🇬🇧 **English**: `Clone https://example.com/`
+- 🇮🇳 **Hindi**: `Website ko clone kare https://example.com/`
+
+### 📂 Output Structure
 ```
 example-clone/
-  index.html
-  about.html
-  css/
-    index-style0.css
-    index-inline-style0.css
-  js/
-    index-script0.js
-  images/
-    index-image0.png
+├── 📄 index.html
+├── 📄 about.html
+├── 📁 css/
+│   ├── index-style0.css
+│   └── index-inline-style0.css
+├── 📁 js/
+│   └── index-script0.js
+└── 📁 images/
+    └── index-image0.png
 ```
 
-Notes:
+---
 
-- Internal links are discovered from the root page and validated before scraping
-- External links (`http`, `mailto:`, `tel:`) are ignored
-- Links to `/` are rewritten to `/<folder>/index.html` and opened in a new tab when clicked
+## 💡 Usage Examples
+
+### 🌟 Basic Cloning
+```bash
+# English
+Query: Clone https://awesome-portfolio.com/
+
+# Hindi  
+Query: Website ko clone kare https://awesome-portfolio.com/
+```
+
+### 🎯 Advanced Features
+- 🔍 **Auto-discovery** of internal pages
+- 🔗 **Smart link rewriting** for local navigation
+- 🚫 **External link filtering** (ignores `mailto:`, `tel:`, external domains)
+- 📱 **Responsive preservation** of original styling
 
 ---
 
-## Limitations and Legal Notice
+## ⚠️ Important Notes
 
-- Designed for static sites; dynamic content behind client-side rendering, auth, or APIs may not clone fully
-- Respect website Terms of Service and robots.txt. Only clone sites you own or are authorized to copy
-- Use responsibly; you are solely responsible for how you use this tool
+### 🚨 Legal Considerations
+- ✅ **Respect** website Terms of Service and robots.txt
+- ✅ **Only clone** sites you own or have permission to copy
+- ✅ **Use responsibly** - you're solely responsible for usage
 
----
-
-## Troubleshooting
-
-- Missing API config error
-  - Ensure `.env` exists with `GEMINI_API_KEY` and `BASE_URL`
-  - Copy from `example.env`
-
-- Node ESM/Import errors
-  - Use Node 18+
-  - This project is ESM-first; ensure your Node version supports modern ESM syntax
+### 🔧 Technical Limitations
+- 🎯 **Best for static sites** - Dynamic content may not clone fully
+- ⚡ **Client-side rendering** limitations
+- 🔐 **Authentication-protected** content not supported
 
 ---
 
-## Development
+## 🐛 Troubleshooting
 
-- Clone this repository
-- Run `npm install` to install dependencies
-- Run `npm run dev` for hot-reload development (nodemon)
-- Run `npm start` to start the CLI normally
+### 🔑 API Configuration Issues
+```bash
+Error: Missing API config
+```
+**Solution**: Ensure `.env` exists with proper `GEMINI_API_KEY` and `BASE_URL`
+
+### 📦 Node ESM/Import Errors
+```bash
+Error: ERR_REQUIRE_ESM
+```
+**Solution**: Upgrade to Node.js 18+ for modern ESM support
+
+### 🌐 Network Issues
+```bash
+Error: ENOTFOUND
+```
+**Solution**: Check internet connection and target URL accessibility
 
 ---
 
-## License
+## 👨‍💻 Development
 
-ISC License
+### 🛠️ Setup Development Environment
+```bash
+git clone https://github.com/arpan7sarkar/Web-clone-cli.git
+cd Web-clone-cli
+npm install
+```
 
-Copyright (c) 2025 Arpan Sarkar
+### 🏃‍♂️ Development Commands
+```bash
+npm run dev    # 🔥 Hot-reload development (nodemon)
+npm start      # 🚀 Start CLI normally
+npm test       # 🧪 Run tests
+npm run build  # 📦 Build for production
+```
 
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
+---
 
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
+## 🤝 Contributing
+
+We welcome contributions! 🎉
+
+1. 🍴 Fork the repository
+2. 🌿 Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. 💾 Commit your changes (`git commit -m 'Add amazing feature'`)
+4. 📤 Push to the branch (`git push origin feature/amazing-feature`)
+5. 🎯 Open a Pull Request
+
+---
+
+## 📜 License
+
+**ISC License** 📄
+
+Copyright (c) 2025 **Arpan Sarkar**
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+---
+
+<div align="center">
+
+### 🌟 Star this project if you found it helpful!
+
+**Made with ❤️ by [Arpan Sarkar](https://github.com/arpan7sarkar)**
+
+[🐛 Report Bug](https://github.com/arpan7sarkar/Web-clone-cli/issues) • [✨ Request Feature](https://github.com/arpan7sarkar/Web-clone-cli/issues) • [📖 Documentation](https://github.com/arpan7sarkar/Web-clone-cli/wiki)
+
+</div>
