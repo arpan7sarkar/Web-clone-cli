@@ -10,6 +10,8 @@ An intelligent Node.js CLI that clones static websites by discovering internal l
 
 ---
 
+<img width="1866" height="1088" alt="Screenshot 2025-08-18 143454" src="https://github.com/user-attachments/assets/2793b4ea-d506-46b2-90f0-4f9848f899a2" />
+
 ## ✨ Key Features
 
 🔍 **Smart Discovery** - Automatically finds and maps internal links  
